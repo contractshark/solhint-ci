@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Solhint - Solidity Linter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/cayman.css">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>ordering Solhint | ContractShark SolHint CI</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="ordering Solhint" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="SolHint GitHub Action CI Service" />
+<meta property="og:description" content="SolHint GitHub Action CI Service" />
+<link rel="canonical" href="http://localhost:4000/rules/order/ordering.html" />
+<meta property="og:url" content="http://localhost:4000/rules/order/ordering.html" />
+<meta property="og:site_name" content="ContractShark SolHint CI" />
+<script type="application/ld+json">
+{"headline":"ordering Solhint","url":"http://localhost:4000/rules/order/ordering.html","description":"SolHint GitHub Action CI Service","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+<section class="page-header">
+    <h1 class="project-name">Solhint</h1>
+    <h2 class="project-tagline">This is an open source project for linting solidity code.</h2>
+    <a href="https://github.com/protofire/solhint" class="btn">View on GitHub</a>
+</section>
+
+
+<section class="main-content">
+
+    <h1 id="ordering">ordering</h1>
+<p><img src="https://img.shields.io/badge/-Style%20Guide%20Rules-informational" alt="Category Badge" />
+<img src="https://img.shields.io/badge/Default%20Severity-warn-yellow" alt="Default Severity Badge warn" /></p>
+
+<h2 id="description">Description</h2>
+<p>Check order of elements in file and inside each contract, according to the style guide</p>
+
+<h2 id="options">Options</h2>
+<p>This rule accepts a string option of rule severity. Must be one of “error”, “warn”, “off”. Default to warn.</p>
+
+<h3 id="example-config">Example Config</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"ordering"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warn"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="examples">Examples</h2>
+<h3 id="-examples-of-correct-code-for-this-rule">👍 Examples of <strong>correct</strong> code for this rule</h3>
+
+<h4 id="all-units-are-in-order">All units are in order</h4>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">pragma</span> <span class="n">solidity</span> <span class="o">^</span><span class="mf">0.6</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="s">"./some/library.sol"</span><span class="p">;</span>
+<span class="k">import</span> <span class="s">"./some/other-library.sol"</span><span class="p">;</span>
+
+<span class="k">enum</span> <span class="n">MyEnum</span> <span class="p">{</span>
+  <span class="n">Foo</span><span class="p">,</span>
+  <span class="n">Bar</span>
+<span class="p">}</span>
+
+<span class="k">struct</span> <span class="n">MyStruct</span> <span class="p">{</span>
+  <span class="kt">uint</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">uint</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">interface</span> <span class="n">IBox</span> <span class="p">{</span>
+  <span class="k">function</span> <span class="n">getValue</span><span class="p">()</span> <span class="k">public</span><span class="p">;</span>
+  <span class="k">function</span> <span class="n">setValue</span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="k">public</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">library</span> <span class="n">MyLibrary</span> <span class="p">{</span>
+  <span class="k">function</span> <span class="n">add</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">c</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">contract</span> <span class="n">MyContract</span> <span class="p">{</span>
+  <span class="k">struct</span> <span class="n">InnerStruct</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">flag</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">enum</span> <span class="n">InnerEnum</span> <span class="p">{</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span>
+  <span class="p">}</span>
+
+  <span class="kt">uint</span> <span class="k">public</span> <span class="n">x</span><span class="p">;</span>
+  <span class="kt">uint</span> <span class="k">public</span> <span class="n">y</span><span class="p">;</span>
+
+  <span class="k">event</span> <span class="n">MyEvent</span><span class="p">(</span><span class="kt">address</span> <span class="n">a</span><span class="p">);</span>
+
+  <span class="k">constructor</span> <span class="p">()</span> <span class="k">public</span> <span class="p">{}</span>
+
+  <span class="k">fallback</span> <span class="p">()</span> <span class="k">external</span> <span class="p">{}</span>
+
+  <span class="k">function</span> <span class="n">myExternalFunction</span><span class="p">()</span> <span class="k">external</span> <span class="p">{}</span>
+  <span class="k">function</span> <span class="n">myExternalConstFunction</span><span class="p">()</span> <span class="k">external</span> <span class="n">const</span> <span class="p">{}</span>
+  <span class="k">function</span> <span class="n">myPublicFunction</span><span class="p">()</span> <span class="k">public</span> <span class="p">{}</span>
+  <span class="k">function</span> <span class="n">myPublicConstFunction</span><span class="p">()</span> <span class="k">public</span> <span class="n">const</span> <span class="p">{}</span>
+  <span class="k">function</span> <span class="n">myInternalFunction</span><span class="p">()</span> <span class="k">internal</span> <span class="p">{}</span>
+  <span class="k">function</span> <span class="n">myPrivateFunction</span><span class="p">()</span> <span class="k">private</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="-examples-of-incorrect-code-for-this-rule">👎 Examples of <strong>incorrect</strong> code for this rule</h3>
+
+<h4 id="state-variable-declaration-after-function">State variable declaration after function</h4>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="k">contract</span> <span class="n">MyContract</span> <span class="p">{</span>
+    <span class="k">function</span> <span class="n">foo</span><span class="p">()</span> <span class="k">public</span> <span class="p">{}</span>
+
+    <span class="kt">uint</span> <span class="n">a</span><span class="p">;</span>
+  <span class="p">}</span>
+
+</code></pre></div></div>
+
+<h4 id="library-after-contract">Library after contract</h4>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="k">contract</span> <span class="n">MyContract</span> <span class="p">{}</span>
+
+  <span class="k">library</span> <span class="n">MyLibrary</span> <span class="p">{}</span>
+
+</code></pre></div></div>
+
+<h4 id="interface-after-library">Interface after library</h4>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+  <span class="k">library</span> <span class="n">MyLibrary</span> <span class="p">{}</span>
+
+  <span class="k">interface</span> <span class="n">MyInterface</span> <span class="p">{}</span>
+
+</code></pre></div></div>
+
+<h2 id="version">Version</h2>
+<p>This rule is introduced in the latest version.</p>
+
+<h2 id="resources">Resources</h2>
+<ul>
+  <li><a href="https://github.com/protofire/solhint/tree/master/lib/rules/order/ordering.js">Rule source</a></li>
+  <li><a href="https://github.com/protofire/solhint/tree/master/docs/rules/order/ordering.md">Document source</a></li>
+  <li><a href="https://github.com/protofire/solhint/tree/master/test/rules/order/ordering.js">Test cases</a></li>
+</ul>
+
+
+    <footer class="site-footer">
+    <span class="site-footer-owner">
+        &copy;2017-2019, Protofire
+    </span>
+</footer>
+
+
+</section>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Solhint - Solidity Linter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/cayman.css">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Writing plugins | ContractShark SolHint CI</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Writing plugins" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="SolHint GitHub Action CI Service" />
+<meta property="og:description" content="SolHint GitHub Action CI Service" />
+<link rel="canonical" href="http://localhost:4000/writing-plugins.html" />
+<meta property="og:url" content="http://localhost:4000/writing-plugins.html" />
+<meta property="og:site_name" content="ContractShark SolHint CI" />
+<script type="application/ld+json">
+{"headline":"Writing plugins","url":"http://localhost:4000/writing-plugins.html","description":"SolHint GitHub Action CI Service","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+<section class="page-header">
+    <h1 class="project-name">Solhint</h1>
+    <h2 class="project-tagline">This is an open source project for linting solidity code.</h2>
+    <a href="https://github.com/protofire/solhint" class="btn">View on GitHub</a>
+</section>
+
+
+<section class="main-content">
+
+    <h1 id="writing-plugins">Writing plugins</h1>
+
+<p>You can write your own plugins to add new rules to Solhint. Plugins are just npm packages that export an array of new rules. A plugin can be as simple as:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">[</span><span class="nx">MyNewRule</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>where <code class="language-plaintext highlighter-rouge">MyNewRule</code> is a class that implements the rule.</p>
+
+<p>As with shareable configs, there is a convention for the name of these packages: their name has to start with <code class="language-plaintext highlighter-rouge">solhint-plugin-</code>.</p>
+
+<h2 id="structure-of-a-custom-rule">Structure of a custom rule</h2>
+
+<p>A rule is a class that follows two conventions: the constructor accepts a reporter and a config, and <code class="language-plaintext highlighter-rouge">ruleId</code> field is present in the object. This <code class="language-plaintext highlighter-rouge">ruleId</code> is the one that will be used to activate and configure the rule. For example:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">MyNewRule</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">reporter</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ruleId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">my-new-rule</span><span class="dl">'</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">reporter</span> <span class="o">=</span> <span class="nx">reporter</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span>
+
+    <span class="p">...</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is enough for the rule to work but, of course, this will do nothing. Rules are implemented using a visitor pattern: you implement methods that are called when a node in the AST is entered or exited. For example, let’s make a rule that forbids naming contracts <code class="language-plaintext highlighter-rouge">Foo</code>:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">NoFoosAllowed</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">reporter</span><span class="p">,</span> <span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ruleId</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">no-foos</span><span class="dl">'</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">reporter</span> <span class="o">=</span> <span class="nx">reporter</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">config</span> <span class="o">=</span> <span class="nx">config</span>
+  <span class="p">}</span>
+
+  <span class="nx">ContractDefinition</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">name</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">ctx</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">name</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">Foo</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">reporter</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">ctx</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">ruleId</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Contracts cannot be named "Foo"</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">[</span><span class="nx">NoFoosAllowed</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><em>You can experiment with an AST by going to <a href="https://astexplorer.net/">AST explorer</a> and selecting “Solidity” as the
+language.</em></p>
+
+<p>After adding this rule to the exported array, you can publish your package. Remember to prefix the name with <code class="language-plaintext highlighter-rouge">solhint-plugin-</code>. Let’s say our plugin is called <code class="language-plaintext highlighter-rouge">solhint-plugin-naming</code> and that we already published it and installed it in some project. Then, we can activate this rule in the configuration:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"plugins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"naming"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"naming/no-foos"</span><span class="p">:</span><span class="w"> </span><span class="s2">"error"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>And that’s it! Notice that we have to qualify the rule name when we enable it, but in the rule definition we only set the rule name.</p>
+
+
+    <footer class="site-footer">
+    <span class="site-footer-owner">
+        &copy;2017-2019, Protofire
+    </span>
+</footer>
+
+
+</section>
+
+</body>
+</html>

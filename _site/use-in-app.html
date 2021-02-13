@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Solhint - Solidity Linter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/cayman.css">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>API for Ethereum’s Solidity Code Validator | ContractShark SolHint CI</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="API for Ethereum’s Solidity Code Validator" />
+<meta name="author" content="@drabenia" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Description of API provided by Solhint - Ethereum’s Solidity Code Validator" />
+<meta property="og:description" content="Description of API provided by Solhint - Ethereum’s Solidity Code Validator" />
+<link rel="canonical" href="http://localhost:4000/use-in-app.html" />
+<meta property="og:url" content="http://localhost:4000/use-in-app.html" />
+<meta property="og:site_name" content="ContractShark SolHint CI" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-10-23T04:16:00-07:00" />
+<script type="application/ld+json">
+{"headline":"API for Ethereum’s Solidity Code Validator","dateModified":"2017-10-23T04:16:00-07:00","datePublished":"2017-10-23T04:16:00-07:00","author":{"@type":"Person","name":"@drabenia"},"url":"http://localhost:4000/use-in-app.html","description":"Description of API provided by Solhint - Ethereum’s Solidity Code Validator","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/use-in-app.html"},"@type":"BlogPosting","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+<section class="page-header">
+    <h1 class="project-name">Solhint</h1>
+    <h2 class="project-tagline">This is an open source project for linting solidity code.</h2>
+    <a href="https://github.com/protofire/solhint" class="btn">View on GitHub</a>
+</section>
+
+
+<section class="main-content">
+
+    <h3 id="use-solhint-in-your-application">Use Solhint in Your Application</h3>
+
+<p>If you want to use Solhint linter in your application - you may import <code class="language-plaintext highlighter-rouge">solhint/lib/index</code> file and run function 
+<em>parseStr</em>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">linter</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">solhint/lib/index</span><span class="dl">'</span><span class="p">);</span>
+
+
+<span class="kd">const</span> <span class="nx">report</span> <span class="o">=</span> <span class="nx">linter</span><span class="p">.</span><span class="nx">processStr</span><span class="p">(</span><span class="nx">code</span><span class="p">,</span> <span class="nx">configAsJson</span><span class="p">);</span>
+<span class="nx">report</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">curError</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">curError</span><span class="p">.</span><span class="nx">message</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h3 id="solhint-api">Solhint API</h3>
+
+<h4 id="functions">Functions</h4>
+
+<p><strong>linter.processStr</strong>:</p>
+
+<ul>
+  <li>Arguments:
+    <ul>
+      <li>code {String} - Source code to validation</li>
+      <li>config {Object} - Object representation of .solhint.json configuration</li>
+    </ul>
+  </li>
+  <li>Returns:
+    <ul>
+      <li>report {Report} - object that contains list of errors and warnings</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>linter.processFile</strong>:</p>
+
+<ul>
+  <li>Arguments:
+    <ul>
+      <li>file {String} - Path to file for validation</li>
+      <li>config {Object} - Object representation of .solhint.json configuration</li>
+    </ul>
+  </li>
+  <li>Returns:
+    <ul>
+      <li>report {Report} - object that contains list of errors and warnings</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>linter.processPath</strong></p>
+
+<ul>
+  <li>Arguments:
+    <ul>
+      <li>path {String} - Glob path for validation</li>
+      <li>config {Object} - Object representation of .solhint.json configuration</li>
+    </ul>
+  </li>
+  <li>Returns:
+    <ul>
+      <li>report {Report} - object that contains list of errors and warnings</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="objects">Objects</h4>
+
+<p><strong>Report</strong></p>
+
+<ul>
+  <li><em>messages</em> {Message} - Message about error or warning</li>
+  <li><em>filename</em> {String} - File name of validated source</li>
+  <li><em>errorCount</em> {Number} - Count of error in current report</li>
+  <li><em>warningCount</em> {Number} - Count of warnings in current report</li>
+</ul>
+
+<p><strong>Message</strong></p>
+
+<ul>
+  <li><em>message</em> {String} - Error / warning message</li>
+  <li><em>ruleId</em> {String} - Rule name</li>
+  <li><em>severity</em> {Number} - Severity ID. Value of Report.SEVERITY.ERROR or Report.SEVERITY.WARN</li>
+  <li><em>column</em> {Number} - Column where error occurred</li>
+  <li><em>line</em> {Number} - Line where error occurred</li>
+</ul>
+
+
+    <footer class="site-footer">
+    <span class="site-footer-owner">
+        &copy;2017-2019, Protofire
+    </span>
+</footer>
+
+
+</section>
+
+</body>
+</html>

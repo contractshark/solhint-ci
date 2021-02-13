@@ -1,16 +1,20 @@
-title: Your awesome title
+title: ContractShark SolHint CI
 lang: en
-description: Write an awesome description for your new site here
+description: SolHint GitHub Action CI Service
+source: ./rules/
+encoding: "utf-8"
+
+permalink:  /:categories/:title:output_ext
 
 ## local method ##
-# theme: jekyll-rtd-theme
+theme: jekyll-rtd-theme
 # debug:
 #   compress: false
 #   dist: true
 #   shortcodes: true
 
 ## remote method ##
-remote_theme: rundocs/jekyll-rtd-theme
+#remote_theme: rundocs/jekyll-rtd-theme
 
 readme_index:
   with_frontmatter: true
@@ -23,3 +27,12 @@ plugins:
   - jemoji
   - jekyll-avatar
   - jekyll-mentions
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: index
+      type: default
+    values:
+      layout: default

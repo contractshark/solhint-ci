@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Solhint - Solidity Linter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/cayman.css">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>comprehensive-interface Solhint | ContractShark SolHint CI</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="comprehensive-interface Solhint" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="SolHint GitHub Action CI Service" />
+<meta property="og:description" content="SolHint GitHub Action CI Service" />
+<link rel="canonical" href="http://localhost:4000/rules/miscellaneous/comprehensive-interface.html" />
+<meta property="og:url" content="http://localhost:4000/rules/miscellaneous/comprehensive-interface.html" />
+<meta property="og:site_name" content="ContractShark SolHint CI" />
+<script type="application/ld+json">
+{"headline":"comprehensive-interface Solhint","url":"http://localhost:4000/rules/miscellaneous/comprehensive-interface.html","description":"SolHint GitHub Action CI Service","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+<section class="page-header">
+    <h1 class="project-name">Solhint</h1>
+    <h2 class="project-tagline">This is an open source project for linting solidity code.</h2>
+    <a href="https://github.com/protofire/solhint" class="btn">View on GitHub</a>
+</section>
+
+
+<section class="main-content">
+
+    <h1 id="comprehensive-interface">comprehensive-interface</h1>
+<p><img src="https://img.shields.io/badge/-Miscellaneous-informational" alt="Category Badge" />
+<img src="https://img.shields.io/badge/Default%20Severity-warn-yellow" alt="Default Severity Badge warn" /></p>
+
+<h2 id="description">Description</h2>
+<p>Check that all public or external functions are override. This is iseful to make sure that the whole API is extracted in an interface.</p>
+
+<h2 id="options">Options</h2>
+<p>This rule accepts a string option of rule severity. Must be one of “error”, “warn”, “off”. Default to warn.</p>
+
+<h3 id="example-config">Example Config</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"comprehensive-interface"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warn"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="examples">Examples</h2>
+<h3 id="-examples-of-correct-code-for-this-rule">👍 Examples of <strong>correct</strong> code for this rule</h3>
+
+<h4 id="all-public-functions-are-overrides">All public functions are overrides</h4>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">pragma</span> <span class="n">solidity</span> <span class="o">^</span><span class="mf">0.7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="k">contract</span> <span class="n">Foo</span> <span class="k">is</span> <span class="n">FooInterface</span> <span class="p">{</span>
+  <span class="k">function</span> <span class="n">foo</span><span class="p">()</span> <span class="k">public</span> <span class="k">override</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h3 id="-examples-of-incorrect-code-for-this-rule">👎 Examples of <strong>incorrect</strong> code for this rule</h3>
+
+<h4 id="a-public-function-is-not-an-override">A public function is not an override</h4>
+
+<div class="language-solidity highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">pragma</span> <span class="n">solidity</span> <span class="o">^</span><span class="mf">0.7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="k">contract</span> <span class="n">Foo</span> <span class="p">{</span>
+  <span class="k">function</span> <span class="n">foo</span><span class="p">()</span> <span class="k">public</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<h2 id="version">Version</h2>
+<p>This rule is introduced in the latest version.</p>
+
+<h2 id="resources">Resources</h2>
+<ul>
+  <li><a href="https://github.com/protofire/solhint/tree/master/lib/rules/miscellaneous/comprehensive-interface.js">Rule source</a></li>
+  <li><a href="https://github.com/protofire/solhint/tree/master/docs/rules/miscellaneous/comprehensive-interface.md">Document source</a></li>
+  <li><a href="https://github.com/protofire/solhint/tree/master/test/rules/miscellaneous/comprehensive-interface.js">Test cases</a></li>
+</ul>
+
+
+    <footer class="site-footer">
+    <span class="site-footer-owner">
+        &copy;2017-2019, Protofire
+    </span>
+</footer>
+
+
+</section>
+
+</body>
+</html>

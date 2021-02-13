@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Solhint - Solidity Linter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/cayman.css">
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Rule Index of Solhint | ContractShark SolHint CI</title>
+<meta name="generator" content="Jekyll v3.9.0" />
+<meta property="og:title" content="Rule Index of Solhint" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="SolHint GitHub Action CI Service" />
+<meta property="og:description" content="SolHint GitHub Action CI Service" />
+<link rel="canonical" href="http://localhost:4000/rules.html" />
+<meta property="og:url" content="http://localhost:4000/rules.html" />
+<meta property="og:site_name" content="ContractShark SolHint CI" />
+<script type="application/ld+json">
+{"headline":"Rule Index of Solhint","url":"http://localhost:4000/rules.html","description":"SolHint GitHub Action CI Service","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+
+<body>
+<section class="page-header">
+    <h1 class="project-name">Solhint</h1>
+    <h2 class="project-tagline">This is an open source project for linting solidity code.</h2>
+    <a href="https://github.com/protofire/solhint" class="btn">View on GitHub</a>
+</section>
+
+
+<section class="main-content">
+
+    <h2 id="best-practise-rules">Best Practise Rules</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rule Id</th>
+      <th>Error</th>
+      <th>Recommended</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/rules/best-practises/code-complexity.html">code-complexity</a></td>
+      <td>Function has cyclomatic complexity “current” but allowed no more than maxcompl.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="/rules/best-practises/function-max-lines.html">function-max-lines</a></td>
+      <td>Function body contains “count” lines but allowed no more than maxlines.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="/rules/best-practises/max-line-length.html">max-line-length</a></td>
+      <td>Line length must be no more than maxlen.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="/rules/best-practises/max-states-count.html">max-states-count</a></td>
+      <td>Contract has “some count” states declarations but allowed no more than maxstates.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/best-practises/no-empty-blocks.html">no-empty-blocks</a></td>
+      <td>Code contains empty block.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/best-practises/no-unused-vars.html">no-unused-vars</a></td>
+      <td>Variable “name” is unused.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/best-practises/payable-fallback.html">payable-fallback</a></td>
+      <td>When fallback is not payable you will not be able to receive ethers.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/best-practises/reason-string.html">reason-string</a></td>
+      <td>Require or revert statement must have a reason string and check that each reason string is at most N characters long.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/best-practises/constructor-syntax.html">constructor-syntax</a></td>
+      <td>Constructors should use the new constructor keyword.</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="miscellaneous">Miscellaneous</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rule Id</th>
+      <th>Error</th>
+      <th>Recommended</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/rules/miscellaneous/comprehensive-interface.html">comprehensive-interface</a></td>
+      <td>Check that all public or external functions are override. This is iseful to make sure that the whole API is extracted in an interface.</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="style-guide-rules">Style Guide Rules</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rule Id</th>
+      <th>Error</th>
+      <th>Recommended</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/rules/miscellaneous/quotes.html">quotes</a></td>
+      <td>Use double quotes for string literals. Values must be ‘single’ or ‘double’.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/naming/const-name-snakecase.html">const-name-snakecase</a></td>
+      <td>Constant name must be in capitalized SNAKE_CASE.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/naming/contract-name-camelcase.html">contract-name-camelcase</a></td>
+      <td>Contract name must be in CamelCase.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/naming/event-name-camelcase.html">event-name-camelcase</a></td>
+      <td>Event name must be in CamelCase.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/naming/func-name-mixedcase.html">func-name-mixedcase</a></td>
+      <td>Function name must be in camelCase.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/naming/func-param-name-mixedcase.html">func-param-name-mixedcase</a></td>
+      <td>Function param name must be in mixedCase</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="/rules/naming/modifier-name-mixedcase.html">modifier-name-mixedcase</a></td>
+      <td>Modifier name must be in mixedCase.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="/rules/naming/private-vars-leading-underscore.html">private-vars-leading-underscore</a></td>
+      <td>Private and internal names must start with a single underscore.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="/rules/naming/use-forbidden-name.html">use-forbidden-name</a></td>
+      <td>Avoid to use letters ‘I’, ‘l’, ‘O’ as identifiers.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/naming/var-name-mixedcase.html">var-name-mixedcase</a></td>
+      <td>Variable name must be in mixedCase.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/order/func-order.html">func-order</a></td>
+      <td>Function order is incorrect.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="/rules/order/imports-on-top.html">imports-on-top</a></td>
+      <td>Import statements must be on top.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/order/ordering.html">ordering</a></td>
+      <td>Check order of elements in file and inside each contract, according to the style guide</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="/rules/order/visibility-modifier-order.html">visibility-modifier-order</a></td>
+      <td>Visibility modifier must be first in list of modifiers.</td>
+      <td>✔️</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="security-rules">Security Rules</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rule Id</th>
+      <th>Error</th>
+      <th>Recommended</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="/rules/security/avoid-call-value.html">avoid-call-value</a></td>
+      <td>Avoid to use “.call.value()()”.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/avoid-low-level-calls.html">avoid-low-level-calls</a></td>
+      <td>Avoid to use low level calls.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/avoid-sha3.html">avoid-sha3</a></td>
+      <td>Use “keccak256” instead of deprecated “sha3”.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/avoid-suicide.html">avoid-suicide</a></td>
+      <td>Use “selfdestruct” instead of deprecated “suicide”.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/avoid-throw.html">avoid-throw</a></td>
+      <td>“throw” is deprecated, avoid to use it.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/avoid-tx-origin.html">avoid-tx-origin</a></td>
+      <td>Avoid to use tx.origin.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/check-send-result.html">check-send-result</a></td>
+      <td>Check result of “send” call.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/compiler-version.html">compiler-version</a></td>
+      <td>Compiler version must satisfy a semver requirement.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/func-visibility.html">func-visibility</a></td>
+      <td>Explicitly mark visibility in function.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/mark-callable-contracts.html">mark-callable-contracts</a></td>
+      <td>Explicitly mark all external contracts as trusted or untrusted.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/multiple-sends.html">multiple-sends</a></td>
+      <td>Avoid multiple calls of “send” method in single transaction.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/no-complex-fallback.html">no-complex-fallback</a></td>
+      <td>Fallback function must be simple.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/no-inline-assembly.html">no-inline-assembly</a></td>
+      <td>Avoid to use inline assembly. It is acceptable only in rare cases.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/not-rely-on-block-hash.html">not-rely-on-block-hash</a></td>
+      <td>Do not rely on “block.blockhash”. Miners can influence its value.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/not-rely-on-time.html">not-rely-on-time</a></td>
+      <td>Avoid to make time-based decisions in your business logic.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/reentrancy.html">reentrancy</a></td>
+      <td>Possible reentrancy vulnerabilities. Avoid state changes after transfer.</td>
+      <td>✔️</td>
+    </tr>
+    <tr>
+      <td><a href="/rules/security/state-visibility.html">state-visibility</a></td>
+      <td>Explicitly mark visibility of state.</td>
+      <td>✔️</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://consensys.github.io/smart-contract-best-practices/recommendations/">ConsenSys Guide for Smart Contracts</a></li>
+  <li><a href="http://solidity.readthedocs.io/en/develop/style-guide.html">Solidity Style Guide</a></li>
+</ul>
+
+
+    <footer class="site-footer">
+    <span class="site-footer-owner">
+        &copy;2017-2019, Protofire
+    </span>
+</footer>
+
+
+</section>
+
+</body>
+</html>
