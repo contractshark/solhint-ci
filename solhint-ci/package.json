@@ -13,8 +13,8 @@
     "code-quality",
     "smart-contracts"
   ],
-  "homepage": "https://protofire.github.io/solhint/",
-  "repository": "https://github.com/protofire/solhint",
+  "homepage": "https://contractshark.github.io/solhint-ci/",
+  "repository": "https://github.com/contractshark/solhint-ci",
   "scripts": {
     "exec": "./solhint.js",
     "docs": "node scripts/generate-rule-docs.js"
